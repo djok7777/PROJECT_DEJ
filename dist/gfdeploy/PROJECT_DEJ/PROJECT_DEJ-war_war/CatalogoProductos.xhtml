@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+    <p:menubar>
+        <p:menuitem value="Regresar al inicio" outcome="/index.xhtml"/>
+    </p:menubar>
+            <p:dataGrid var="prod" value="#{catalogoProductosBean.listaProductos()}" columns="3" layout="grid"
+            rows="12" paginator="true" id="productos"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="6,12,16">
+
+            <f:facet name="header">
+                Productos a la venta
+            </f:facet>
+
+            <p:panel header="#{prod.descripcion}" style="text-align:center">
+                <h:panelGrid columns="1" style="width:100%">
+
+                    <h:graphicImage value="resources/imagen_prod/#{prod.nomImagen}.jpg" height="200px" width="200px"></h:graphicImage>
+                    <h:outputText value="CLP $#{prod.precio}" />
+                    <h:commandButton action="#{catalogoProductosBean.llamaPagCompra(prod.codigoProducto)}" value="Ver">
+                        <f:actionListener binding="#{comprarProductoBean.cargarDatos(prod.codigoProducto)}" />
+                    </h:commandButton>
+                    
+                </h:panelGrid>
+            </p:panel>
+            </p:dataGrid>
+        </h:form>
+        
+    </h:body>
+</html>
+

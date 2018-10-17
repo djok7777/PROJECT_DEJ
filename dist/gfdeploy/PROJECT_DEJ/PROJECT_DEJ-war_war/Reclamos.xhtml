@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="./css/default.css"/>
+    <h:outputStylesheet name="./css/CSSLayout.css"/>
+    <h:head>
+        <title>Reclamos</title>
+    </h:head>
+    <h:body id="backgr">
+           <div id="header"  >
+            <img  id="b" src="./resources/Imgs/3.png" ></img>
+        </div>
+        <div id="top">
+            <h:link outcome="index.xhtml"><img  id="a" src="./resources/Imgs/1.png"></img> </h:link>
+            <div class="pg1">
+              <h:panelGrid columns="2" cellpadding="10" id="pg">
+                  <img  src="./resources/Imgs/carro.png"  width="100" height="100"></img>
+                 <h:outputText value="Start Shopping Now , Enjoy The Future!" ></h:outputText>
+            </h:panelGrid>
+                </div>
+        </div>
+        
+        <hr width="100%" id="hr1"  ></hr>
+       
+        <div class="Recl">
+            
+          <h:form id="Reclamo">
+            
+             
+              <p:growl autoUpdate="true"></p:growl>
+              <h:panelGrid columns="2">
+                     <h:outputText value="Ingresa tus Comentarios Aqui!"/>
+                            <p:column/>
+                        <p:inputText     value="#{reclamoBean.descripcion}"/>
+                        <p:commandButton  value="Ingresar Reclamo" icon="ui-icon-key" update="Reclamo" actionListener="#{reclamoBean.create()}"/>
+                 </h:panelGrid>
+               <p:link value="Volver" outcome="/index.xhtml"></p:link>
+          </h:form>
+        </div>
+    </h:body>
+</html>
+

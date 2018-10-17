@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:growl autoUpdate="true"/>
+
+    <p:panel id="basic" header="Detalles de la compra" footer="Realice su compra presionando el boton" style="margin-bottom:20px">
+            
+        
+        <p:layout style="min-width:400px;min-height:1000px;">
+    <p:layoutUnit position="west" resizable="true" size="400" minSize="40" maxSize="400">
+
+        <h2>Datos del producto</h2>
+        <p:panelGrid columns="2">
+            <f:facet name="header">
+                <h:graphicImage value="resources/imagen_prod/#{comprarProductoBean.producto.nomImagen}.jpg" height="200px" width="200px"></h:graphicImage>
+            </f:facet>
+
+            <h:outputText value="Producto:" />
+            <h:outputText value="#{comprarProductoBean.producto.descripcion}" />
+
+            <h:outputText value="Stock:" />
+            <h:outputText value="#{comprarProductoBean.producto.stock}" />
+
+            <h:outputText value="Precio" />
+            <h:outputText value="CLP $#{comprarProductoBean.producto.precio}" />
+
+            <h:outputText value="Categoria" />
+            <h:outputText value="#{comprarProductoBean.producto.idCategoria.descripcion}" />
+        </p:panelGrid>
+                
+        <br/><br/>
+                
+        <h2>Datos del vendedor</h2>
+                
+        <p:panelGrid columns="2">
+            <f:facet name="header">
+               
+            </f:facet>
+            <h:outputText value="Usuario" />
+            <h:outputText value="#{comprarProductoBean.cliente.nomUser}" />
+
+            <h:outputText value="Nombre vendedor" />
+            <h:outputText value="#{comprarProductoBean.nombreVendedor}" />
+
+            <h:outputText value="Fono" />
+            <h:outputText value="#{comprarProductoBean.cliente.fono}" />
+
+            <h:outputText value="email" />
+            <h:outputText value="#{comprarProductoBean.cliente.email}" />
+        </p:panelGrid>
+           </p:layoutUnit>
+            
+            
+        <p:layoutUnit position="center">
+            
+        <br/>
+        <b2>Seleccionar tipo de envio</b2>
+        <p:selectOneMenu value="#{comprarProductoBean.id_envio}">
+            <f:selectItems value="#{comprarProductoBean.listaEnvios()}" var="envio" itemLabel="#{envio.descripcion}"
+                           itemValue="#{envio.idEnvio}"/>
+        </p:selectOneMenu>
+        
+        <br/>
+        
+        <b2>Seleccionar método de pago</b2>
+        <p:selectOneMenu value="#{comprarProductoBean.id_pago}">
+            <f:selectItems value="#{comprarProductoBean.listaMedioPago()}" var="pago" itemLabel="#{pago.descripcion}"
+                           itemValue="#{pago.idPago}"/>
+        </p:selectOneMenu>
+        
+        <br/>
+        <p:commandButton actionListener="#{comprarProductoBean.realizarCompra()}" value="Comprar" update="form">
+        </p:commandButton>
+</p:layoutUnit>
+            </p:layout>
+                    </p:panel>
+            
+                
+
+        </h:form>
+       
+    </h:body>
+</html>
+

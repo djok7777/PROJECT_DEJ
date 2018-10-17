@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body id='backgr'>
+        
+        <h:form id="form">
+            <h:outputText value="#{loginBean.retornarNombreUsuario()}"/>
+            <p:growl autoUpdate="true"/>
+            
+            <br/>
+            <h:outputText value="USUARIO"/>
+            <p:inputText value="#{loginBean.nomUser}" required="true" disabled="false"/>
+
+            <h:outputText value="PASSWORD: " />
+            <p:password id="nonFeedback" value="#{loginBean.password}" />
+            
+            <p:commandButton actionListener="#{loginBean.validarUsuario()}" value="insertar" update="form"></p:commandButton>
+            
+        </h:form>
+        
+        <h:form id="formCerrarSession">
+        <p:commandButton actionListener="#{loginBean.cerrarSesion()}" value="cerrar session" update="form"></p:commandButton>
+        </h:form>
+        <br/>
+        
+        <p:link outcome="IngresoCategoria.xhtml" value="Ingreso categoria">
+        <f:param name="productId" value="10" />
+        </p:link>
+        <br/>
+        <p:link outcome="RegistroCliente.xhtml" value="Ingreso cliente">
+        <f:param name="productId" value="10" />
+        </p:link>
+        <br/>
+        <p:link outcome="CatalogoProductos.xhtml" value="Catalogo de productos">
+        <f:param name="productId" value="10" />
+        </p:link>
+        <br/>
+        <p:link outcome="VentaUsuario.xhtml" value="Ventas del usuario">
+        <f:param name="productId" value="10" />
+        </p:link>
+        <p:link outcome="ModificarProducto.xhtml" value="Modifica Producto">
+        <f:param name="productId" value="10" />
+        </p:link>
+        <p:link outcome="EliminarProducto.xhtml" value="Elimina Producto">
+        <f:param name="productId" value="10" />
+        </p:link>
+        <br/>
+        
+    </h:body>
+</html>
+

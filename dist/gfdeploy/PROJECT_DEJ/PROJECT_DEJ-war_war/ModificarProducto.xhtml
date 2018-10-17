@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+            <p:menubar>
+                <p:menuitem value="Regresar al inicio" outcome="/index.xhtml"/>
+            </p:menubar>
+            
+            <p:growl autoUpdate="true"/>
+            
+            <p:dataTable id="publicados" var="produ" value="#{modificarProductoBean.listaProductosUsuario()}" editable="true" style="margin-bottom:20px">
+            <f:facet name="header">
+                ARTÍCULOS A MODIFICAR
+            </f:facet>
+            <p:column headerText="IDENTIFICADOR">
+                <h:outputText value="#{produ.codigoProducto}" />
+            </p:column>
+            <p:column headerText="PRODUCTO">
+                <h:outputText value="#{produ.descripcion}" />
+            </p:column>
+            <p:column headerText="STOCK">
+                <h:outputText value="#{produ.stock}" />
+            </p:column>
+            <p:column headerText="PRECIO">
+                <h:outputText value="#{produ.precio}" />
+            </p:column>
+        </p:dataTable>
+            
+            <h:panelGrid columns="2">
+                <h:outputText value="ACTUALIZACION DEL PRODUCTO"/>
+                <p:column/>
+                <h:outputText value="INSERTAR CODIGO DEL PRODUCTO"/>
+                <p:inputText value="#{modificarProductoBean.codigoProducto}" required="true" disabled="false"/>
+                <h:outputText value="DESCRIPCION"/>
+                <p:inputText value="#{modificarProductoBean.descripcion}" required="true" disabled="false"/>
+                <h:outputText value="PRECIO"/>
+                <p:inputText value="#{modificarProductoBean.precio}" required="true" disabled="false"/>
+                <h:outputText value="STOCK"/>
+                <p:inputText value="#{modificarProductoBean.stock}" required="true" disabled="false"/>
+                <h:outputText value="CATEGORIA:"/>
+                <p:selectOneMenu value="#{modificarProductoBean.id_categoria}">
+                    <f:selectItems value="#{modificarProductoBean.listaCategorias()}" var="c" itemLabel="#{c.descripcion}"
+                                   itemValue="#{c.idCategoria}"/>
+                </p:selectOneMenu>
+                
+                <p:commandButton actionListener="#{modificarProductoBean.modifica()}" value="MODIFICAR" update="form"></p:commandButton>
+            </h:panelGrid>
+   
+   </h:form>
+    </h:body>
+</html>
+

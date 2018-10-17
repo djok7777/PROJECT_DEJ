@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <h:form id="form">
+            
+            <p:menubar>
+                <p:menuitem value="Regresar al inicio" outcome="/index.xhtml"/>
+            </p:menubar>
+            
+            <p:growl autoUpdate="true"/>
+            <h:panelGrid columns="2">
+                <h:outputText value="REGISTRO DE USUARIO"/>
+                <p:column/>
+                <h:outputText value="NOMBRE DE USUARIO"/>
+                <p:inputText value="#{registroUsuarioBean.nom_user}" required="true" disabled="false"/>          
+                <h:outputText value="PASSWORD"/>
+                <p:inputText value="#{registroUsuarioBean.passw}" required="true" disabled="false"/>
+                <h:outputText value="NOMBRES"/>
+                <p:inputText value="#{registroUsuarioBean.nombres}" required="true" disabled="false"/>
+                <h:outputText value="APELLIDO PATERNO"/>
+                <p:inputText value="#{registroUsuarioBean.apel_paterno}" required="true" disabled="false"/>
+                <h:outputText value="APELLIDO PATERNO"/>
+                <p:inputText value="#{registroUsuarioBean.apel_materno}" required="true" disabled="false"/>
+                <h:outputText value="FONO"/>
+                <p:inputText value="#{registroUsuarioBean.fono}" required="true" disabled="false"/>
+                <h:outputText value="DIRECCION"/>
+                <p:inputText value="#{registroUsuarioBean.direccion}" required="true" disabled="false"/>
+                <h:outputText value="EMAIL"/>
+                <p:inputText value="#{registroUsuarioBean.email}" required="true" disabled="false"/>
+                
+                
+                <p:commandButton actionListener="#{registroUsuarioBean.crear()}" value="insertar" update="form"></p:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

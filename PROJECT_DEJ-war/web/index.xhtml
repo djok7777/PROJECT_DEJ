@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+     <h:outputStylesheet name="./css/default.css"/>
+    <h:outputStylesheet name="./css/CSSLayout.css"/>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body  id="backgr">
+        <h:form id="formPage">
+            <p:growl autoUpdate="true" sticky="true" life="3000"></p:growl>
+            <div id="header"  >
+                <img  id="b" src="./resources/Imgs/3.png" ></img>
+            </div>
+            <div id="top">
+                <h:link outcome="index.xhtml"><img  id="a" src="./resources/Imgs/1.png"></img> </h:link>
+            </div>
+            
+          <div class="login-page">
+              <div class="butones">
+                  <b:buttonGroup   id="buton-group" >
+                        <b:dropButton value="Administracion" look="warning">
+                            <b:button value="Modificar  Producto"  outcome="/ModificarProducto.xhtml"    styleClass="width:50%" />
+                            <b:button value="Eliminar   Producto"  outcome="/EliminarProducto.xhtml"   />
+                            <b:button value="Ingresar Categorias"   outcome="/IngresoCategoria.xhtml" />
+                            <b:button value="Administar Ventas"   outcome="/VentaUsuario.xhtml" />
+                            <b:button value="Eliminar Producto"   outcome="/EliminarProducto.xhtml" />
+                        </b:dropButton>
+                        <b:button value="Reclamos"  outcome="/Reclamos.xhtml" iconAwesome="fa-exclamation-triangle"  />
+                         <b:button value="Registro"  outcome="/Registro.xhtml" iconAwesome="fa-user"  />
+                        <b:dropButton value="Perfil" look="success">
+                            <b:navLink value="Cerrar session"  update="formPage"  actionListener="#{loginBean.cerrarSesion()}"></b:navLink>
+                             
+                        </b:dropButton>
+                    </b:buttonGroup>
+                      </div>
+                    
+                        <h:form id="Login">
+                        <p:inputText id="user1"  value="#{loginBean.nomUser}" p:placeholder="Usuario" />
+                        <p:password id="pass1"  value="#{loginBean.password}"  p:placeholder="Contraseña"/>
+                       <p:commandButton id="Login" value="Login" actionListener="#{loginBean.validarUsuario()}" update="Login"/>
+                       </h:form>
+                    </div>
+          
+            
+            <div id="menu">
+               
+                
+                <p:stack  icon="./resources/Imgs/cat0.png"  expanded="false"  id="stack"    >
+                    <p:menuitem icon="./resources/Imgs/cat1.png" value="Electro Y Hogar"  outcome= "/CatalogoProductos.xhtml">
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(1)}" />
+                    </p:menuitem>
+                       <p:menuitem icon="./resources/Imgs/cat2.png"  value="DecoHogar"  outcome= "/CatalogoProductos.xhtml">
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(2)}" />
+                    </p:menuitem>
+                       <p:menuitem  icon="./resources/Imgs/cat3.png" value="Deportes"  outcome= "/CatalogoProductos.xhtml">
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(3)}" />
+                    </p:menuitem>
+                       <p:menuitem  icon="./resources/Imgs/cat4.png"  value="Moda Mujer"  outcome= "/CatalogoProductos.xhtml">
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(4)}" />
+                    </p:menuitem>
+                       <p:menuitem  icon="./resources/Imgs/cat5.png"  value="Moda Hombre"  outcome= "/CatalogoProductos.xhtml">
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(5)}" />
+                    </p:menuitem>
+                       <p:menuitem icon="./resources/Imgs/cat6.png"  value="Zapatos"  outcome= "/CatalogoProductos.xhtml">
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(6)}" />
+                    </p:menuitem>
+                    <p:menuitem icon="./resources/Imgs/cat7.png"  value="Dormitorio"  outcome= "/CatalogoProductos.xhtml" >
+                     <f:actionListener binding="#{catalogoProductosBean.setCatalogoRecibido(7)}" />
+                    </p:menuitem>
+                </p:stack>
+               
+            </div>
+
+   <hr width="100%" id="hr1"  ></hr>
+            <div id="carousel">
+                <b:carousel  style="width:600px ;height:310px ">
+                    <b:carouselItem>
+                        <img src="./resources/Imgs/muesta.jpg" alt="Valladolid" style="width:600px; height:310px" />
+                    </b:carouselItem>
+                    <b:carouselItem>
+                        <img src="./resources/Imgs/muestra2.jpg" alt="Valladolid" style="width:600px; height:310px"/>
+                    </b:carouselItem>
+                    <b:carouselItem>
+                        <img src="./resources/Imgs/ab.jpg" alt="Valladolid" style="width:600px; height:310px"/>
+                    </b:carouselItem>
+                    <b:carouselItem>
+                        <img src="./resources/Imgs/ad.jpg" alt="Valladolid" style="width:600px; height:310px"/>
+                    </b:carouselItem>
+                </b:carousel>
+
+            </div>
+            <hr width="100%" id="hr2"  ></hr>
+
+            <div class="items">
+            <h:form id="form">
+                <p:dataGrid var="prod" value="#{catalogoProductosBean.listaProductos()}" columns="3" 
+            rows="12" paginator="true" id="productos"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="6,12,16">
+
+            <f:facet name="header">
+                Productos a la venta
+            </f:facet>
+
+            <p:panel header="#{prod.descripcion}" style="text-align:center">
+                <h:panelGrid columns="1" style="width:100%">
+
+                    <h:graphicImage value="resources/imagen_prod/#{prod.nomImagen}.jpg" height="200px" width="200px"></h:graphicImage>
+                    <h:outputText value="CLP $#{prod.precio}" />
+
+                </h:panelGrid>
+            </p:panel>
+                </p:dataGrid>
+            </h:form>
+                </div>
+            
+        </h:form>
+        
+          
+    </h:body>
+</html>
+
